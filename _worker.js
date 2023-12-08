@@ -1,31 +1,5 @@
-export interface Env {
-	CLIENT_ID: string;
-	CLIENT_SECRET: string;
-	REDIRECT_URI: string;
-}
-
-export interface RepositoryInfo {
-    description?: string,
-    name: string,
-}
-
-interface RespositoriesResult {
-	data: {
-		viewer: {
-			repositories: {
-				nodes: RepositoryInfo[];
-			};
-		};
-	};
-}
-
-interface AccessTokenResult {
-	access_token: string;
-}
-
-
 export default {
-	async fetch(request: Request, env: Env): Promise<Response> {
+	async fetch(request, env) {
 		const path = new URL(request.url).pathname;
 		let token;
 
@@ -45,7 +19,7 @@ export default {
 						client_secret: env.CLIENT_SECRET,
 						code,
 					}),
-				}).then((res) => res.json() as Promise<AccessTokenResult>).then((data) => data.access_token);
+				}).then((res) => res.json()).then((data) => data.access_token);
 
 				return new Response(`<!doctype html>
 					<html><body>
@@ -83,7 +57,7 @@ export default {
 					}),
 				});
 
-				const json: RespositoriesResult = await response.json();
+				const json = await response.json();
 
 				return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
 			default:
