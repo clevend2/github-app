@@ -8,7 +8,6 @@ import Alert from '@mui/material/Alert';
 import './App.css';
 import { RepositoryInfo } from './github.types';
 import ListItemButton from '@mui/material/ListItemButton';
-import Link from '@mui/material/Link';
 
 const token = localStorage.getItem("token");
 
@@ -44,11 +43,14 @@ function App() {
   const listItems = repos.map((repo) =>
     <>
       <ListItem alignItems="flex-start">
+        <ListItemButton
+          onClick={() => window.location.href = repo.url}
+        >
           <ListItemText
             primary={repo.name}
             secondary={repo.description || "No description"}
           />
-          <Link href={repo.url} target="_blank" rel="noopener">View</Link>
+        </ListItemButton>
       </ListItem>
       <Divider />
     </>
