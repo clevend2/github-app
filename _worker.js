@@ -66,7 +66,7 @@ export default {
 
 					return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
 				} catch (e) {
-					return new Response(response.body(), { status: 502 });
+					return new Response(await response.text(), { status: 502 });
 				}
 			default:
 				return env.ASSETS.fetch(request);
