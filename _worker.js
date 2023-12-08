@@ -46,6 +46,7 @@ export default {
 						"Content-Type": "application/json",
 						Accept: "application/json",
 						Authorization: `Bearer ${token}`,
+						"user-agent": "node.js"
 					},
 					body: JSON.stringify({
 						query: `query {
