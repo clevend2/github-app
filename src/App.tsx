@@ -58,7 +58,7 @@ function App() {
           Your repositories
         </p>
       </header>
-      {loading && <CircularProgress color="secondary" />}
+      {loading && <CircularProgress style={{marginTop: "20px"}} color="secondary" />}
       {!loading && repos.length === 0 && <Alert severity="info">No repositories found</Alert>}
       {!loading && repos.length > 0 && ( 
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
