@@ -18,7 +18,7 @@ function App() {
   }
 
   React.useEffect(() => {
-    fetch('/respositories', {
+    fetch('/repositories', {
       headers: {
         'Authorization': `${token}`
       }
