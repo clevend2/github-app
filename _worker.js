@@ -63,7 +63,8 @@ export default {
 
 				const json = await response.json();
 
-				return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
+				return new Response(json);
+				// return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
 			default:
 				return env.ASSETS.fetch(request);
 		}
