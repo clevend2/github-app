@@ -45,7 +45,7 @@ export default {
 					headers: {
 						"Content-Type": "application/json",
 						Accept: "application/json",
-						Authorization: token,
+						Authorization: `Bearer ${token}`,
 					},
 					body: JSON.stringify({
 						query: `query {
@@ -66,7 +66,7 @@ export default {
 
 					return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
 				} catch (e) {
-					return new Response(e.message, { status: 500 });
+					return new Response(response.body(), { status: 502 });
 				}
 			default:
 				return env.ASSETS.fetch(request);
