@@ -15,11 +15,6 @@ function App() {
   const [repos, setRepos] = React.useState<RepositoryInfo[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
-
-  if (!token) {
-    window.location.href = "/authenticate";
-  }
-
   React.useEffect(() => {
     fetch('/repositories', {
       headers: {
