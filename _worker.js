@@ -22,12 +22,16 @@ export default {
 				}).then((res) => res.json()).then((data) => data.access_token);
 
 				return new Response(`<!doctype html>
-					<html><body>
-					<script type='application/javascript'>
-					window.localStorage.setItem('token', '${token}');
-					window.location.href = '/';
-					</script>
-					</body></html>`);
+				  <html><body>
+				    <script type='application/javascript'>
+				      window.localStorage.setItem('token', '${token}');
+				      window.location.href = '/';
+				    </script>
+				  </body></html>`, {
+				  headers: {
+				    'Content-Type': 'text/html'
+				  }
+				});
 			case "/repositories":
 				token = request.headers.get("Authorization");
 
