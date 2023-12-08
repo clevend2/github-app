@@ -7,10 +7,11 @@ import Typography from '@mui/material/Typography';
 import './App.css';
 import { RepositoryInfo } from './github.types';
 
+const token = localStorage.getItem("token");
+
 function App() {
   const [repos, setRepos] = React.useState<RepositoryInfo[]>([]);
 
-  const token = localStorage.getItem("token");
 
   if (!token) {
     window.location.href = "/authenticate";
@@ -39,7 +40,7 @@ function App() {
         <ListItemText
           primary={repo.name}
           secondary={
-            <React.Fragment>
+            <>
               <Typography
                 sx={{ display: 'inline' }}
                 component="span"
@@ -49,7 +50,7 @@ function App() {
                 Ali Connors
               </Typography>
               {repo.description || "No description"}
-            </React.Fragment>
+            </>
           }
         />
       </ListItem>
