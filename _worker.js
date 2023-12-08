@@ -60,6 +60,8 @@ export default {
 						}`,
 					}),
 				});
+
+				return new Response(await response.text(), { status: response.status });
 				
 				try {
 					const json = await response.json();
