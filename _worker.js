@@ -62,14 +62,12 @@ export default {
 					}),
 				});
 
-				return new Response(await response.text(), { status: response.status });
-				
 				try {
 					const json = await response.json();
 
 					return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
 				} catch (e) {
-					return new Response(await response.text(), { status: 502 });
+					return new Response(e.message, { status: response.status });
 				}
 			default:
 				return env.ASSETS.fetch(request);
