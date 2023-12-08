@@ -3,7 +3,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 import './App.css';
 import { RepositoryInfo } from './github.types';
 
@@ -46,7 +47,7 @@ function App() {
           secondary={repo.description || "No description"}
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider />
     </>
   );
 
@@ -57,8 +58,8 @@ function App() {
           Your repositories
         </p>
       </header>
-      {loading && <Typography variant="h6">Loading...</Typography>}
-      {!loading && repos.length === 0 && <Typography variant="h6">No repositories found</Typography>}
+      {loading && <CircularProgress color="secondary" />}
+      {!loading && repos.length === 0 && <Alert severity="info">No repositories found</Alert>}
       {!loading && repos.length > 0 && ( 
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {listItems}
