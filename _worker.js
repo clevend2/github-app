@@ -60,11 +60,14 @@ export default {
 						}`,
 					}),
 				});
+				
+				try {
+					const json = await response.json();
 
-				const json = await response.json();
-
-				return new Response(json);
-				// return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
+					return new Response(JSON.stringify(json.data.viewer.repositories.nodes));
+				} catch (e) {
+					return new Response(e.message, { status: 500 });
+				}
 			default:
 				return env.ASSETS.fetch(request);
 		}
