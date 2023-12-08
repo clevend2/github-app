@@ -55,6 +55,7 @@ export default {
 									nodes {
 										name
 										description
+										url
 									}
 								}
 							}

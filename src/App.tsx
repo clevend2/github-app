@@ -7,6 +7,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import './App.css';
 import { RepositoryInfo } from './github.types';
+import ListItemButton from '@mui/material/ListItemButton';
+import Link from '@mui/material/Link';
 
 const token = localStorage.getItem("token");
 
@@ -42,10 +44,11 @@ function App() {
   const listItems = repos.map((repo) =>
     <>
       <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={repo.name}
-          secondary={repo.description || "No description"}
-        />
+          <ListItemText
+            primary={repo.name}
+            secondary={repo.description || "No description"}
+          />
+          <Link href={repo.url} target="_blank" rel="noopener">View</Link>
       </ListItem>
       <Divider />
     </>
