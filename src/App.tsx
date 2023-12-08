@@ -11,6 +11,7 @@ const token = localStorage.getItem("token");
 
 function App() {
   const [repos, setRepos] = React.useState<RepositoryInfo[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
 
   if (!token) {
@@ -30,7 +31,10 @@ function App() {
         return response;
       })
       .then((response) => response.json())
-      .then((data) => setRepos(data));
+      .then((data) => {
+        setRepos(data);
+        setLoading(false);
+      });
   }, []);
 
 
@@ -39,19 +43,7 @@ function App() {
       <ListItem alignItems="flex-start">
         <ListItemText
           primary={repo.name}
-          secondary={
-            <>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {repo.description || "No description"}
-            </>
-          }
+          secondary={repo.description || "No description"}
         />
       </ListItem>
       <Divider variant="inset" component="li" />
@@ -65,9 +57,13 @@ function App() {
           Your repositories
         </p>
       </header>
+      {loading && <Typography variant="h6">Loading...</Typography>}
+      {!loading && repos.length === 0 && <Typography variant="h6">No repositories found</Typography>}
+      {!loading && repos.length > 0 && ( 
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {listItems}
       </List>
+      )}
     </div>
   );
 }
