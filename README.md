@@ -1,8 +1,5 @@
-# Discogs Test App
-This is an app that requests your Github user authentication and then displays a list of links to your personal repositories. It leverages a Github App and Cloudflare Pages to provide authentication flow.
-
-## Viewing
-Visit https://discogs.pages.dev/ for the Github App authenicated flow.
+# Github App Example
+This is an app that requests your Github user authentication and then displays a list of links to your personal repositories. It leverages a Github App and Cloudflare Pages to provide authentication flow
 
 ## Decisions
 1. Using Github GraphQL API - It was suggested to use this API, however I was unable to find a truly public Github API with no required authorization.
